@@ -6,8 +6,12 @@ import SearchIcon from "@material-ui/icons/Search";
 
 function Homepage() {
   const state = useContext(cards);
-  const [searchCountry, handleChange] = useInput("");
-
+  const [searchCountry, handleChange] = useInput({
+    source: "",
+    input: "",
+    dropdown: "",
+  });
+  // const [selectRegion, handleRegion] = useDropdown("");
   return (
     <div>
       <div>
@@ -16,26 +20,29 @@ function Homepage() {
           <input
             placeholder="Search for a country..."
             type="text"
-            value={searchCountry}
+            name="input"
+            value={searchCountry.text}
             onChange={handleChange}
           />
         </div>
-        {/* <select>
-          <option selected disabled>
-            Filter by Region
-          </option>
+        <select
+          name="dropdown"
+          value={searchCountry.text}
+          onChange={handleChange}
+          // resetInput()
+        >
+          {/* ? fix default value */}
+          <option value="-1">Filter by Region</option>
           <option>Africa</option>
-          <option>America</option>
+          <option>Americas</option>
           <option>Asia</option>
           <option>Europe </option>
           <option>Oceania</option>
-        </select> */}
+        </select>
       </div>
 
       <div>
-        {state.map((s) => (
-          <CountryCard {...s} key={s.name} />
-        ))}
+        {state && state.map((s) => <CountryCard {...s} key={s.name} />)})
       </div>
     </div>
   );
