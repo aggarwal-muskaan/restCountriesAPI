@@ -6,7 +6,7 @@ function useInput(init) {
   const [val, setVal] = useState(init);
   const changeCards = useContext(filterCards);
 
-  const debouncedSearchTerm = useDebounce(val.input, 500);
+  const debouncedSearchTerm = useDebounce(val.input, 800);
   const debouncedSelectRegion = useDebounce(val.dropdown, 500);
 
   const handleChange = (event) => {
@@ -22,21 +22,27 @@ function useInput(init) {
       const findCountry = `https://restcountries.eu/rest/v2/name/${debouncedSearchTerm}`;
       fetch(findCountry)
         .then((res) => res.json())
-        .then((data) => changeCards(data));
+        .then((data) => changeCards(data))
+        .catch((error) => {
+          throw error;
+        });
     } else if (debouncedSelectRegion) {
       // console.log("val", val, "deb", debouncedSearchTerm);
       const findCountry = `https://restcountries.eu/rest/v2/region/${debouncedSelectRegion}`;
       fetch(findCountry)
         .then((res) => res.json())
-        .then((data) => changeCards(data));
+        .then((data) => changeCards(data))
+        .catch((error) => {
+          throw error;
+        });
     }
   }, [debouncedSearchTerm, debouncedSelectRegion, changeCards]);
 
-  // const resetInput = (e) => {
-  //   if (e.target.name === "input") setVal({ dropdown: "-1" });
-  //   else setVal({ input: "" });
-  // };
-  return [val, handleChange];
+  const resetInput = (e) => {
+    if (e.target.name === "input") setVal({ dropdown: "-1" });
+    else setVal({ input: "" });
+  };
+  return [val, handleChange, resetInput];
 }
 
 export default useInput;

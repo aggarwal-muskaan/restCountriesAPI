@@ -11,7 +11,6 @@ function Homepage() {
     input: "",
     dropdown: "",
   });
-  // const [selectRegion, handleRegion] = useDropdown("");
   return (
     <div>
       <div>
@@ -21,15 +20,16 @@ function Homepage() {
             placeholder="Search for a country..."
             type="text"
             name="input"
-            value={searchCountry.text}
+            value={searchCountry.input}
             onChange={handleChange}
+            // onKeyUp={resetInput}
           />
         </div>
         <select
           name="dropdown"
-          value={searchCountry.text}
+          // onClick={resetInput}
+          value={searchCountry.dropdown}
           onChange={handleChange}
-          // resetInput()
         >
           {/* ? fix default value */}
           <option value="-1">Filter by Region</option>
@@ -42,7 +42,12 @@ function Homepage() {
       </div>
 
       <div>
-        {state && state.map((s) => <CountryCard {...s} key={s.name} />)})
+        {state?.message ? (
+          <h3>No Search Found.</h3>
+        ) : (
+          state.map((s) => <CountryCard {...s} key={s.name} />)
+          // console.log(state)
+        )}
       </div>
     </div>
   );
