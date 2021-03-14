@@ -4,13 +4,14 @@ import { cards } from "../contexts/state.context";
 import useInput from "../customhook/useInput";
 import SearchIcon from "@material-ui/icons/Search";
 
-function Homepage() {
+function Homepage({ history }) {
   const state = useContext(cards);
   const [searchCountry, handleChange] = useInput({
     // source: "",
     input: "",
     dropdown: "",
   });
+  // console.log(history);
   return (
     <div>
       <div>
@@ -43,8 +44,7 @@ function Homepage() {
         {state?.message ? (
           <h3>No Search Found.</h3>
         ) : (
-          state.map((s) => <CountryCard {...s} key={s.name} />)
-          // console.log(state)
+          state.map((s) => <CountryCard {...s} key={s.name} {...history} />)
         )}
       </div>
     </div>

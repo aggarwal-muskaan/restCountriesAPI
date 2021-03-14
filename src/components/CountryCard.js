@@ -1,8 +1,11 @@
 import React from "react";
 
-function CountryCard({ flag, name, population, region, capital }) {
+function CountryCard({ flag, name, population, region, capital, push }) {
+  const handleClick = () => {
+    push(`/detail/${name}`);
+  };
   return (
-    <div>
+    <div style={{ cursor: "pointer" }} onClick={() => handleClick()}>
       <div>
         <img src={flag} alt={`${name} flag`} />
       </div>
