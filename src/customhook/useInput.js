@@ -2,11 +2,13 @@ import { useDebounce } from "use-lodash-debounce";
 import { useState, useContext, useEffect } from "react";
 import { filterCards } from "../contexts/state.context";
 import { cards } from "../contexts/state.context";
+import { allCountriesData } from "../contexts/state.context";
 
 function useInput(init) {
   const [val, setVal] = useState(init);
   const changeCards = useContext(filterCards);
   const state = useContext(cards);
+  const allCountries = useContext(allCountriesData);
 
   const debouncedSearchTerm = useDebounce(val.input, 800);
   const debouncedSelectRegion = useDebounce(val.dropdown, 500);
@@ -38,10 +40,7 @@ function useInput(init) {
         });
       // }
     } else if (debouncedSearchTerm === "" && state?.message) {
-      let baseUrl = "https://restcountries.eu/rest/v2/all";
-      fetch(baseUrl)
-        .then((res) => res.json())
-        .then((data) => changeCards(data));
+      changeCards(allCountries);
     }
   }, [debouncedSearchTerm, debouncedSelectRegion, changeCards, state.message]);
 
