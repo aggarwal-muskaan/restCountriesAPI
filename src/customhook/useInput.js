@@ -1,10 +1,12 @@
 import { useDebounce } from "use-lodash-debounce";
 import { useState, useContext, useEffect } from "react";
 import { filterCards } from "../contexts/state.context";
+import { cards } from "../contexts/state.context";
 
 function useInput(init) {
   const [val, setVal] = useState(init);
   const changeCards = useContext(filterCards);
+  const state = useContext(cards);
 
   const debouncedSearchTerm = useDebounce(val.input, 800);
   const debouncedSelectRegion = useDebounce(val.dropdown, 500);
@@ -23,6 +25,7 @@ function useInput(init) {
         .then((res) => res.json())
         .then((data) => changeCards(data))
         .catch((error) => {
+          // console.log("caught!");
           throw error;
         });
     } else if (debouncedSelectRegion) {
@@ -34,13 +37,13 @@ function useInput(init) {
           throw error;
         });
       // }
-    } else if (debouncedSearchTerm === "") {
+    } else if (debouncedSearchTerm === "" && state?.message) {
       let baseUrl = "https://restcountries.eu/rest/v2/all";
       fetch(baseUrl)
         .then((res) => res.json())
         .then((data) => changeCards(data));
     }
-  }, [debouncedSearchTerm, debouncedSelectRegion, changeCards]);
+  }, [debouncedSearchTerm, debouncedSelectRegion, changeCards, state.message]);
 
   return [val, handleChange];
 }
