@@ -64,7 +64,7 @@ function CountryDetails({ match, history }) {
       {countryFound?.borders.length !== 0 && (
         <div>
           <strong>Border Countries:</strong>
-          {countryFound.borders.map((b) => displayNameFromCode(b))}
+          <div> {countryFound.borders.map((b) => displayNameFromCode(b))}</div>
         </div>
       )}
     </div>
