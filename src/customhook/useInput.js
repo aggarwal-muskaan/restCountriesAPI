@@ -22,27 +22,31 @@ function useInput(init) {
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      const findCountry = `https://restcountries.eu/rest/v2/name/${debouncedSearchTerm}`;
+      const findCountry = `${process.env.REACT_APP_SEARCH_BY_NAME}${debouncedSearchTerm}`;
       fetch(findCountry)
         .then((res) => res.json())
         .then((data) => changeCards(data))
         .catch((error) => {
-          // console.log("caught!");
           throw error;
         });
     } else if (debouncedSelectRegion) {
-      const findCountry = `https://restcountries.eu/rest/v2/region/${debouncedSelectRegion}`;
+      const findCountry = `${process.env.REACT_APP_SEARCH_BY_REGION}${debouncedSelectRegion}`;
       fetch(findCountry)
         .then((res) => res.json())
         .then((data) => changeCards(data))
         .catch((error) => {
           throw error;
         });
-      // }
     } else if (debouncedSearchTerm === "" && state?.message) {
       changeCards(allCountries);
     }
-  }, [debouncedSearchTerm, debouncedSelectRegion, changeCards, state.message]);
+  }, [
+    debouncedSearchTerm,
+    debouncedSelectRegion,
+    changeCards,
+    state.message,
+    allCountries,
+  ]);
 
   return [val, handleChange];
 }
