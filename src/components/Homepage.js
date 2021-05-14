@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import CountryCard from "./CountryCard";
 import { cards } from "../contexts/state.context";
 import useInput from "../customhook/useInput";
@@ -11,7 +12,7 @@ function Homepage({ history }) {
     input: "",
     dropdown: "",
   });
-  // console.log(history);
+
   return (
     <div>
       <div>
@@ -50,5 +51,9 @@ function Homepage({ history }) {
     </div>
   );
 }
+
+Homepage.propTypes = {
+  history: PropTypes.object.isRequired,
+};
 
 export default Homepage;

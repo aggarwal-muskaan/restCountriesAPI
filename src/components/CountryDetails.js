@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import { allCountriesData } from "../contexts/state.context";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 function CountryDetails({ match, history }) {
   const allCountries = useContext(allCountriesData);
@@ -76,11 +78,19 @@ function CountryDetails({ match, history }) {
   return (
     <>
       <div>
-        <button onClick={() => history.push("/")}>Back</button>
+        <button onClick={() => history.push("/")}>
+          <ArrowBackIcon fontSize="small" />
+          Back
+        </button>
       </div>
       {print}
     </>
   );
 }
+
+CountryDetails.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 export default CountryDetails;

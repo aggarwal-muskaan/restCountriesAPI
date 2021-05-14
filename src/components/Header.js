@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Brightness2OutlinedIcon from "@material-ui/icons/Brightness2Outlined";
 import Brightness2Icon from "@material-ui/icons/Brightness2";
 
@@ -20,4 +21,8 @@ function Header({ theme, toggleTheme }) {
   );
 }
 
+Header.propTypes = {
+  theme: PropTypes.string.isRequired,
+  toggleTheme: PropTypes.func,
+};
 export default Header;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function CountryCard({ flag, name, population, region, capital, push }) {
   const handleClick = () => {
@@ -27,5 +28,14 @@ function CountryCard({ flag, name, population, region, capital, push }) {
     </div>
   );
 }
+
+CountryCard.propTypes = {
+  flag: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  population: PropTypes.any,
+  region: PropTypes.string,
+  capital: PropTypes.string,
+  push: PropTypes.func.isRequired,
+};
 
 export default CountryCard;
