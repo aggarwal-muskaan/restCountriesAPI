@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./styles/Theme";
@@ -6,8 +7,9 @@ import { GlobalStyles } from "./styles/globalStyles";
 import { useDarkMode } from "./customhook/useDarkMode";
 import { Country } from "./contexts/state.context";
 import Header from "./components/Header";
-import Homepage from "./components/Homepage";
-import CountryDetails from "./components/CountryDetails";
+
+const Homepage = React.lazy(() => import("./components/Homepage"));
+const CountryDetails = React.lazy(() => import("./components/CountryDetails"));
 
 function App() {
   const [theme, toggleTheme] = useDarkMode("light");
@@ -20,22 +22,26 @@ function App() {
     <div className="App">
       <ThemeProvider theme={themeMode}>
         <>
-          <GlobalStyles />
-          <Header theme={theme} toggleTheme={toggleTheme} />
-          <Country>
-            <Switch>
-              <Route
-                path="/"
-                exact
-                render={(props) => <Homepage {...props} />}
-              />
-              <Route
-                path="/detail/:id"
-                exact
-                render={(routeProps) => <CountryDetails {...routeProps} />}
-              />
-            </Switch>
-          </Country>
+          <Suspense
+            fallback={<h2 style={{ textAlign: "center" }}>Loading...</h2>}
+          >
+            <GlobalStyles />
+            <Header theme={theme} toggleTheme={toggleTheme} />
+            <Country>
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  render={(props) => <Homepage {...props} />}
+                />
+                <Route
+                  path="/detail/:id"
+                  exact
+                  render={(routeProps) => <CountryDetails {...routeProps} />}
+                />
+              </Switch>
+            </Country>
+          </Suspense>
         </>
       </ThemeProvider>
     </div>
