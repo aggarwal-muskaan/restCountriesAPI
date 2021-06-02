@@ -14,10 +14,12 @@ function useInput(init) {
   const debouncedSelectRegion = useDebounce(val.dropdown, 500);
 
   const handleChange = (event) => {
-    setVal({
-      [event.target.name]: event.target.value,
-      // source: event.target.name,
-    });
+    const newVal = event.target.value;
+    if (newVal !== "-1")
+      setVal({
+        [event.target.name]: newVal,
+        // source: event.target.name,
+      });
   };
 
   useEffect(() => {

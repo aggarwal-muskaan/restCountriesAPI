@@ -31,7 +31,6 @@ function Homepage({ history }) {
           value={searchCountry.dropdown || ""}
           onChange={handleChange}
         >
-          {/* ? fix default value */}
           <option value="-1">Filter by Region</option>
           <option>Americas</option>
           <option>Africa</option>
