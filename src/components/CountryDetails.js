@@ -15,7 +15,10 @@ function CountryDetails({ match, history }) {
       (coun) => coun.alpha3Code === borderCode
     );
     return (
-      <button onClick={() => history.push(`/detail/${borderCountry.name}`)}>
+      <button
+        key={borderCountry.alpha3Code}
+        onClick={() => history.push(`/detail/${borderCountry.name}`)}
+      >
         {borderCountry.name}
       </button>
     );
