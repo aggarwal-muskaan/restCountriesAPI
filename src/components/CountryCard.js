@@ -1,31 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Card, CardImage, CardContent } from "../styles/CountryCardStyle";
 
-function CountryCard({ flag, name, population, region, capital, push }) {
+function CountryCard({ flag, name, population, region, capital, push, theme }) {
   const handleClick = () => {
     push(`/detail/${name}`);
   };
   return (
-    <div style={{ cursor: "pointer" }} onClick={() => handleClick()}>
-      <div>
+    <Card theme={theme} onClick={() => handleClick()}>
+      <CardImage>
         <img src={flag} alt={`${name} flag`} />
-      </div>
-      <div>
+      </CardImage>
+      <CardContent>
         <h4>{name}</h4>
-        <p>
-          <strong>Population: </strong>
+        <div>
+          <p>Population:&nbsp;</p>
           {population.toLocaleString()}
-        </p>
-        <p>
-          <strong>Region: </strong>
+        </div>
+        <div>
+          <p>Region:&nbsp;</p>
           {region}
-        </p>
-        <p>
-          <strong>Capital: </strong>
+        </div>
+        <div>
+          <p>Capital:&nbsp;</p>
           {capital}
-        </p>
-      </div>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
