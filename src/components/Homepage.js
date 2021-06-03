@@ -4,8 +4,14 @@ import CountryCard from "./CountryCard";
 import { cards } from "../contexts/state.context";
 import useInput from "../customhook/useInput";
 import SearchIcon from "@material-ui/icons/Search";
+import {
+  StartPage,
+  UserInputFields,
+  SearchInput,
+  CardContainer,
+} from "../styles/HomepageStyle";
 
-function Homepage({ history }) {
+function Homepage({ history, theme }) {
   const state = useContext(cards);
   const [searchCountry, handleChange] = useInput({
     // source: "",
@@ -14,9 +20,9 @@ function Homepage({ history }) {
   });
 
   return (
-    <div>
-      <div>
-        <div>
+    <StartPage theme={theme}>
+      <UserInputFields theme={theme}>
+        <SearchInput theme={theme}>
           <SearchIcon />
           <input
             placeholder="Search for a country..."
@@ -25,7 +31,7 @@ function Homepage({ history }) {
             value={searchCountry.input || ""}
             onChange={handleChange}
           />
-        </div>
+        </SearchInput>
         <select
           name="dropdown"
           value={searchCountry.dropdown || ""}
@@ -38,16 +44,18 @@ function Homepage({ history }) {
           <option>Europe </option>
           <option>Oceania</option>
         </select>
-      </div>
+      </UserInputFields>
 
-      <div>
+      <CardContainer>
         {state?.message ? (
           <h3>No Search Found.</h3>
         ) : (
-          state.map((s) => <CountryCard {...s} key={s.name} {...history} />)
+          state.map((s) => (
+            <CountryCard {...s} key={s.name} {...history} theme={theme} />
+          ))
         )}
-      </div>
-    </div>
+      </CardContainer>
+    </StartPage>
   );
 }
 
