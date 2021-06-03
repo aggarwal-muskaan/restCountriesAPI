@@ -1,7 +1,7 @@
 import {
   //   darkBlue,
   veryDarkBlue,
-  white,
+  // white,
   veryLightGray,
   //   darkGray,
   blueText,
@@ -15,6 +15,6 @@ export const lightTheme = {
 
 export const darkTheme = {
   body: veryDarkBlue,
-  text: white,
+  text: veryLightGray,
   background: veryDarkBlue,
 };
