@@ -9,12 +9,10 @@ function Header({ theme, toggleTheme }) {
     <Headpiece theme={theme}>
       <h2>Where in the world?</h2>
       <ColorMode>
-        {theme === "dark" ? (
-          <Brightness2Icon onClick={toggleTheme} />
-        ) : (
-          <Brightness2OutlinedIcon onClick={toggleTheme} />
-        )}
-        <h4>Dark Mode</h4>
+        {theme === "dark" ? <Brightness2Icon /> : <Brightness2OutlinedIcon />}
+        <h4 onClick={toggleTheme}>
+          {theme === "dark" ? "Light Mode" : "Dark Mode"}
+        </h4>
       </ColorMode>
     </Headpiece>
   );
