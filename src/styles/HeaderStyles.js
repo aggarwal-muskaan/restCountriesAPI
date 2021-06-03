@@ -12,7 +12,14 @@ export const Headpiece = styled.div`
 `;
 
 export const ColorMode = styled.div`
+  width: 95px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
   opacity: 0.8;
+  cursor: pointer;
+  svg {
+    transform: rotate(-45deg) scale(-1);
+  }
 `;
