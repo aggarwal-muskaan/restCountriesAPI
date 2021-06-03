@@ -32,12 +32,14 @@ function App() {
                 <Route
                   path="/"
                   exact
-                  render={(props) => <Homepage {...props} />}
+                  render={(props) => <Homepage {...props} theme={theme} />}
                 />
                 <Route
                   path="/detail/:id"
                   exact
-                  render={(routeProps) => <CountryDetails {...routeProps} />}
+                  render={(routeProps) => (
+                    <CountryDetails {...routeProps} theme={theme} />
+                  )}
                 />
               </Switch>
             </Country>
