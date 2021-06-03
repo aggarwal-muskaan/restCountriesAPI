@@ -8,4 +8,7 @@ body {
     transition: all 0.50s linear;
     font-size: clamp(.8rem,2.5vw,1.1rem);
   }
+  *{
+    box-sizing:border-box;
+  }
   `;
