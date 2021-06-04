@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { white, darkBlue, darkGray, veryLightGray } from "./color";
 
 export const StartPage = styled.div`
-  padding: 0 clamp(1rem, 6vw, 4rem);
+  padding: 0 clamp(1rem, 6vw, 4rem) 1.7rem;
 `;
 
 export const UserInputFields = styled.div`

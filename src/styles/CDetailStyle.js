@@ -4,6 +4,7 @@ import { white, darkBlue, darkGray, veryLightGray } from "./color";
 export const Button = styled.button`
   border: none;
   outline: none;
+  cursor: pointer;
   padding: 0.5rem 1.4rem;
   border-radius: 3px;
   margin: 0.5rem 10px 0 0;
@@ -70,6 +71,7 @@ export const CountryDetail = styled.div`
 
 export const CSection = styled.div`
   margin-top: 2rem;
+  max-width: 50%;
   p {
     font-size: 14px;
   }
