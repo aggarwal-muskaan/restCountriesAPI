@@ -80,7 +80,7 @@ function CountryDetails({ match, history, theme }) {
             </p>
           </CSection>
         </section>
-        {countryFound?.borders.length !== 0 && (
+        {countryFound?.borders && (
           <CSection>
             <strong>Border Countries:</strong>
             <div>{countryFound.borders.map((b) => displayNameFromCode(b))}</div>
